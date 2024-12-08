@@ -10,9 +10,7 @@ C.init = async function(){
 }
 
 let V = {
-    header: document.querySelector("#header"),
-    main: document.querySelector("#main"),
-    form: document.querySelector("#form")
+    header: document.querySelector("#header")
 };
 
 V.init = function(){

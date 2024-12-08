@@ -4,7 +4,7 @@
  */
 
 
-let API_URL = "http://localhost:8888/R3.DWeb-DI.13-Examen/api/";
+let API_URL = "TO BE DEFINED"; // URL de base de l'API (à définir)
 
 
 /**
