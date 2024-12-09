@@ -35,9 +35,9 @@ V.renderHeader= function(){
 }
 
 V.renderBasicCounter = function(pendingCount, shippedCount, deliveredCount){
-    V.basicCounters.innerHTML = BasicCounterView.render(pendingCount);
-    V.basicCounters.innerHTML += BasicCounterView.render(shippedCount);
-    V.basicCounters.innerHTML += BasicCounterView.render(deliveredCount);
+    V.basicCounters.innerHTML = BasicCounterView.render(pendingCount, "En Attente");
+    V.basicCounters.innerHTML += BasicCounterView.render(shippedCount, "En Cours");
+    V.basicCounters.innerHTML += BasicCounterView.render(deliveredCount, "Livrées");
 }
 
 
