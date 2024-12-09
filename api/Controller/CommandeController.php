@@ -12,10 +12,10 @@ class CommandeController extends Controller {
     }
 
     protected function processGetRequest(HttpRequest $request) {
-        $type = $request->getRessources();
-        $type = explode('/', $type)[1] ?? null;
-        if ($type == "Pending" || $type == "Delivered" || $type == "Shipped") {
-            $commande = $this->commandes->findStatus($type);
+        $status = $request->getParam("status");
+        if ($status == "Pending" || $status == "Delivered" || $status == "Shipped") {
+            $commande = $this->commandes->find($status);
+
             if ($commande) {
                 return $commande;
             }
@@ -23,7 +23,7 @@ class CommandeController extends Controller {
             return ['error' => 'Commande introuvable'];
         }
         http_response_code(404);
-        return ['error' => 'Paramètre inconnu'];
+        return ['error' => 'Paramètre inconnu : les commandes peuvent être de statut Delivered, Shipped ou Pending'];
     }
 
     protected function processPostRequest(HttpRequest $request) {

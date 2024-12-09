@@ -8,14 +8,23 @@ class CommandeRepository extends EntityRepository {
         parent::__construct();
     }
 
-    public function findStatus($status) {
+    public function find($status): array {
         $stmt = $this->cnx->prepare("SELECT * FROM Orders WHERE order_status = :status");
-        $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($result) {
-            return new Commande($result['id'], $result['customer_id'], $result['order_date'], $result['order_status'], $result['weight'], $result['shipping_cost']);
+            $commandes = [];
+            foreach ($result as $obj) {
+                $commande = new Commande($obj['id'], $obj['customer_id'], $obj['order_date'], $obj['order_status'], $obj['weight'], $obj['shipping_cost']);
+                array_push($commandes, $commande);
+            }
+            return $commandes;
         }
+        return false;
+    }
+
+    public function findAll(){
         return false;
     }
 

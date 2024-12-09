@@ -1,5 +1,6 @@
 <?php
 require_once "Class/HttpRequest.php";
+require_once "Controller/CommandeController.php";
 
 
 /** IMPORTANT
