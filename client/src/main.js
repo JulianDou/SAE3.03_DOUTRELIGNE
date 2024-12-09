@@ -1,6 +1,5 @@
 import { HeaderView } from "./ui/header/index.js";
-
-import './index.css';
+import "./ui/test/index.js";
 
 
 let C = {};
