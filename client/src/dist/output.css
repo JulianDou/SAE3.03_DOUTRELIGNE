@@ -556,6 +556,15 @@ video {
   display: none;
 }
 
+.mx-1{
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.mt-1{
+  margin-top: 0.25rem;
+}
+
 .flex{
   display: flex;
 }
@@ -564,12 +573,20 @@ video {
   display: grid;
 }
 
+.h-4{
+  height: 1rem;
+}
+
 .h-full{
   height: 100%;
 }
 
 .min-h-\[480px\]{
   min-height: 480px;
+}
+
+.w-4{
+  width: 1rem;
 }
 
 .w-full{
@@ -600,17 +617,50 @@ video {
   gap: 0.25rem;
 }
 
+.gap-2{
+  gap: 0.5rem;
+}
+
 .gap-4{
   gap: 1rem;
+}
+
+.gap-8{
+  gap: 2rem;
 }
 
 .rounded{
   border-radius: 0.25rem;
 }
 
+.bg-bakery{
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 150 96 / var(--tw-bg-opacity));
+}
+
+.bg-dairy{
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 229 177 / var(--tw-bg-opacity));
+}
+
+.bg-fruits{
+  --tw-bg-opacity: 1;
+  background-color: rgb(145 202 118 / var(--tw-bg-opacity));
+}
+
 .bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.bg-meat{
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 133 127 / var(--tw-bg-opacity));
+}
+
+.bg-vegetables{
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 239 122 / var(--tw-bg-opacity));
 }
 
 .bg-white{

@@ -23,20 +23,19 @@ let chartConfig = {
   subtitle: {
     text: 'Ces 2 derniers mois',
     align: 'center',
-    fontColor: '#000',
+    fontColor: '#777',
     fontFamily: 'Open Sans',
-    fontSize: '16px',
-    offsetY: '10px'
+    fontSize: '12px',
   },
   plot: {
     tooltip: {
-      text: '%npv%',
+      text: '%v',
       padding: '5px 10px',
       fontFamily: 'Open Sans',
       fontSize: '18px'
     },
     valueBox: {
-      text: '%t\n%npv%',
+      text: '%t\n%v ventes',
       fontFamily: 'Open Sans',
       placement: 'out'
     },

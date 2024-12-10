@@ -6,7 +6,15 @@ export default {
     "./src/**/*.{inc,html}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dairy': '#fde5b1',
+        'meat': '#ec857f',
+        'fruits': '#91ca76',
+        'vegetables': '#daef7a',
+        'bakery': '#da9660',
+      }
+    },
   },
   plugins: [],
 }

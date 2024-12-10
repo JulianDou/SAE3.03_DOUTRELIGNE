@@ -54,19 +54,19 @@ C.loadCamembert = async function(){
 C.colorOfCategory = function(category){
     switch(category){
         case "Dairy":
-            return "#FFD700";
+            return "#fde5b1";
 
         case "Meat":
-            return "#FF0000";
+            return "#ec857f";
         
         case "Fruits":
-            return "#008000";
+            return "#91ca76";
         
         case "Vegetables":
-            return "#FFA500";
+            return "#daef7a";
         
         case "Bakery":
-            return "#FF1493";
+            return "#da9660";
     }
 }
 
