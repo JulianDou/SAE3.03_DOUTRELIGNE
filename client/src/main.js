@@ -2,10 +2,11 @@ import { HeaderView } from "./ui/header/index.js";
 import { BasicCounterView } from "./ui/basic-counter/index.js";
 
 import { Camembert } from "./ui/camembert/index.js";
+import { Graph } from "./ui/graph/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
-
+import { salesData } from "./data/ventes.js";
 
 
 let C = {};
@@ -16,6 +17,8 @@ C.init = async function(){
     C.loadCounters();
 
     C.loadCamembert();
+
+    C.loadGraph();
 }
 
 C.loadCounters = async function(){
@@ -24,13 +27,6 @@ C.loadCounters = async function(){
     let deliveredCount = await ordersData.getOrderByStatus("Delivered");
     V.renderBasicCounter(pendingCount, shippedCount, deliveredCount);
 }
-
-// Exemple de data
-// {
-//   text: 'IE and Edge',
-//   values: [4.8],
-//   backgroundColor: '#50ADF5'
-// }
 
 C.loadCamembert = async function(){
     let data = await productsData.getTop3Products();
@@ -44,8 +40,12 @@ C.loadCamembert = async function(){
         }
         camembertData.push(obj);
     }
-    console.log(camembertData);
     V.renderCamembert(camembertData);
+}
+
+C.loadGraph = async function(){
+    let data = await salesData.get6Months();
+    V.renderGraph(data);
 }
 
 C.colorOfCategory = function(category){
@@ -88,6 +88,10 @@ V.renderBasicCounter = function(pendingCount, shippedCount, deliveredCount){
 
 V.renderCamembert = function(data){
     Camembert.render(data);
+}
+
+V.renderGraph = function(data){
+    Graph.render(data);
 }
 
 
