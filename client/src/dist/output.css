@@ -1,4 +1,6 @@
-*, ::before, ::after {
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+*, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -52,7 +54,7 @@
   --tw-contain-style:  ;
 }
 
-::backdrop {
+::backdrop{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -554,130 +556,114 @@ video {
   display: none;
 }
 
-.flex {
+.flex{
   display: flex;
 }
 
-.grid {
+.grid{
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
-.h-full {
+.h-full{
   height: 100%;
 }
 
-.h-24 {
-  height: 6rem;
+.min-h-\[480px\]{
+  min-height: 480px;
 }
 
-.min-h-\[530px\] {
-  min-height: 530px;
-}
-
-.w-full {
+.w-full{
   width: 100%;
 }
 
-.grid-cols-3 {
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3{
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.flex-col {
+.flex-col{
   flex-direction: column;
 }
 
-.items-center {
+.items-center{
   align-items: center;
 }
 
-.justify-center {
+.justify-center{
   justify-content: center;
 }
 
-.gap-4 {
-  gap: 1rem;
-}
-
-.gap-1 {
+.gap-1{
   gap: 0.25rem;
 }
 
-.gap-\[1px\] {
-  gap: 1px;
+.gap-4{
+  gap: 1rem;
 }
 
-.rounded-sm {
-  border-radius: 0.125rem;
-}
-
-.rounded {
+.rounded{
   border-radius: 0.25rem;
 }
 
-.bg-gray-100 {
+.bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-.bg-white {
+.bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.p-4 {
-  padding: 1rem;
-}
-
-.p-1 {
+.p-1{
   padding: 0.25rem;
 }
 
-.py-8 {
+.p-4{
+  padding: 1rem;
+}
+
+.px-1{
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-.text-center {
+.text-center{
   text-align: center;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.text-3xl {
+.text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
-.font-extrabold {
-  font-weight: 800;
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
-.font-black {
-  font-weight: 900;
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
-.font-bold {
+.font-bold{
   font-weight: 700;
 }
 
-.text-black {
+.font-extrabold{
+  font-weight: 800;
+}
+
+.text-black{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
