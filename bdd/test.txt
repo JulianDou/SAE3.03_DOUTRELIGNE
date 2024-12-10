@@ -9,6 +9,9 @@ GROUP BY product_id
 ORDER BY total_quantity DESC
 LIMIT 3;
 
+
+toutes les ventes
+
 SELECT DATE_FORMAT(order_date, '%Y-%m') as month, SUM(OrderItems.quantity * Products.price) as total_value
 FROM Orders
 JOIN OrderItems ON Orders.id = OrderItems.order_id
@@ -16,3 +19,15 @@ JOIN Products ON OrderItems.product_id = Products.id
 WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
 GROUP BY month
 ORDER BY month DESC;
+
+
+ventes par catégorie
+
+SELECT DATE_FORMAT(order_date, '%Y-%m') as month, Products.category as product, SUM(OrderItems.quantity * Products.price) as total_value
+FROM Orders
+JOIN OrderItems ON Orders.id = OrderItems.order_id
+JOIN Products ON OrderItems.product_id = Products.id
+WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+GROUP BY month, product
+ORDER BY month DESC, total_value DESC
+LIMIT 30;

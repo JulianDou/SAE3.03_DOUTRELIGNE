@@ -6,7 +6,6 @@ import { Graph } from "./ui/graph/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
-import { salesData } from "./data/ventes.js";
 
 
 let C = {};
@@ -44,7 +43,7 @@ C.loadCamembert = async function(){
 }
 
 C.loadGraph = async function(){
-    let data = await salesData.get6Months();
+    let data = await ordersData.getTotal("false");
     V.renderGraph(data);
 }
 
@@ -91,7 +90,7 @@ V.renderCamembert = function(data){
 }
 
 V.renderGraph = function(data){
-    Graph.render(data);
+    Graph.render(data, "single");
 }
 
 

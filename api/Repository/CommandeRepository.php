@@ -22,6 +22,45 @@ class CommandeRepository extends EntityRepository {
         return false;
     }
 
+    public function findTotal($sorted): array {
+        if ($sorted == "true"){
+            $stmt = $this->cnx->prepare("
+                SELECT DATE_FORMAT(order_date, '%Y-%m') as month, Products.category as product, SUM(OrderItems.quantity * Products.price) as total_value
+                FROM Orders
+                JOIN OrderItems ON Orders.id = OrderItems.order_id
+                JOIN Products ON OrderItems.product_id = Products.id
+                WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+                GROUP BY month, product
+                ORDER BY month DESC, total_value DESC
+                LIMIT 30;
+            ");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result;
+            }
+            return false;
+        }
+        else{
+            $stmt = $this->cnx->prepare("
+                SELECT DATE_FORMAT(order_date, '%Y-%m') as month, SUM(OrderItems.quantity * Products.price) as total_value
+                FROM Orders
+                JOIN OrderItems ON Orders.id = OrderItems.order_id
+                JOIN Products ON OrderItems.product_id = Products.id
+                WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+                GROUP BY month
+                ORDER BY month DESC;
+            ");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($result) {
+                return array_slice($result, 0, 6);
+            }
+            return false;
+        }
+        return false;
+    }
+
     public function findAll(){
         return false;
     }

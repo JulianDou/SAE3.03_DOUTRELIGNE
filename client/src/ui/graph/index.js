@@ -6,9 +6,13 @@ let Graph = {};
 //   values: [4, 20, 15, 10, 8, 18],
 // }
 
-Graph.render = function(data){
+Graph.render = function(data, mode){
 
-console.log(data);
+let values = [];
+if (mode == "single"){
+  values = [{"values": data.values}];
+}
+
 // CHART CONFIG
 // -----------------------------
 let chartConfig = {
@@ -31,7 +35,7 @@ let chartConfig = {
   scaleX: {
     labels: data.names
   },
-  series: [{"values": data.values}],
+  series: values,
 };
 
 // RENDER CHARTS
