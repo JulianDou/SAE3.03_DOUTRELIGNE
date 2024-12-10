@@ -9,17 +9,15 @@ class CommandeRepository extends EntityRepository {
     }
 
     public function find($status): array {
-        $stmt = $this->cnx->prepare("SELECT * FROM Orders WHERE order_status = :status");
+        $stmt = $this->cnx->prepare("SELECT count(*) FROM Orders WHERE order_status = :status");
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($result) {
-            $commandes = [];
-            foreach ($result as $obj) {
-                $commande = new Commande($obj['id'], $obj['customer_id'], $obj['order_date'], $obj['order_status'], $obj['weight'], $obj['shipping_cost']);
-                array_push($commandes, $commande);
-            }
-            return $commandes;
+            $answer = [
+                'count' => $result[0]['count(*)'],
+            ];
+            return $answer;
         }
         return false;
     }
