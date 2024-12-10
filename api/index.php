@@ -2,6 +2,7 @@
 require_once "Class/HttpRequest.php";
 require_once "Controller/CommandeController.php";
 require_once "Controller/ProduitController.php";
+require_once "Controller/VentesController.php";
 
 
 /** IMPORTANT
@@ -27,7 +28,8 @@ require_once "Controller/ProduitController.php";
  */
 $router = [
     'commandes' => new CommandeController(),
-    'produits'=> new ProduitController()
+    'produits'=> new ProduitController(),
+    'ventes'=> new VentesController()
 ];
 
 // objet HttpRequest qui contient toutes les infos utiles sur la requêtes (voir class/HttpRequest.php)

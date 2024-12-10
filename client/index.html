@@ -6,15 +6,20 @@
     <title>SAE3.DWeb-DI.03 base code</title>
     <link rel="stylesheet" href="src/dist/output.css">
 </head>
-<body class="bg-gray-100 flex flex-col w-full gap-1 p-1 rounded">
+<body class="bg-gray-300 flex flex-col w-full gap-1 p-1 rounded">
     <section id="header"></section>
 
-    <div id="basic-counters" class="grid grid-cols-3 w-full gap-1 bg-gray-100">
+    <div id="basic-counters" class="grid grid-cols-3 w-full gap-1 rounded">
         <!-- Compteurs de l'itération 3 -->
     </div>
 
-    <div id="top3-products" class="rounded w-full bg-white min-h-[480px]">
-        <!-- Camembert de l'itération 4 -->
+    <div class="grid gap-1 grid-cols-1 grid-rows-2 xl:grid-cols-2 xl:grid-rows-1">
+        <div id="top3-products" class="rounded w-full bg-white min-h-[480px]">
+            <!-- Camembert de l'itération 4 -->
+        </div>    
+        <div id="sales-graph" class="rounded w-full bg-white min-h-[360px]">
+            <!-- Graphique de l'itération 5 -->
+        </div>
     </div>
 
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>

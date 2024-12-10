@@ -1,10 +1,18 @@
-SELECT product_id, SUM(quantity) as total_quantity
+SELECT product_id, SUM(OrderItems.quantity) as total_quantity
 FROM OrderItems
 WHERE order_id IN (
     SELECT id
     FROM Orders
-    WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH)
+    WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
 )
 GROUP BY product_id
 ORDER BY total_quantity DESC
-LIMIT 3
+LIMIT 3;
+
+SELECT DATE_FORMAT(order_date, '%Y-%m') as month, SUM(OrderItems.quantity * Products.price) as total_value
+FROM Orders
+JOIN OrderItems ON Orders.id = OrderItems.order_id
+JOIN Products ON OrderItems.product_id = Products.id
+WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+GROUP BY month
+ORDER BY month DESC;
