@@ -20,11 +20,8 @@ C.init = async function(){
 
 C.loadCounters = async function(){
     let pendingCount = await ordersData.getOrderByStatus("Pending");
-    pendingCount = pendingCount.length;
     let shippedCount = await ordersData.getOrderByStatus("Shipped");
-    shippedCount = shippedCount.length;
     let deliveredCount = await ordersData.getOrderByStatus("Delivered");
-    deliveredCount = deliveredCount.length;
     V.renderBasicCounter(pendingCount, shippedCount, deliveredCount);
 }
 
