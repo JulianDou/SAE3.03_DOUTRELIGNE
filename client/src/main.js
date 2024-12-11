@@ -29,17 +29,7 @@ C.loadCounters = async function(){
 
 C.loadTop3 = async function(){
     let data = await productsData.getTop3Products();
-    let top3Data = [];
-    for (let elt of data){
-        let color = elt.category.toLowerCase();
-        let obj = {
-            text: elt.product_name,
-            values: elt.quantity_sold,
-            backgroundColor: color
-        }
-        top3Data.push(obj);
-    }
-    V.renderTop3(top3Data);
+    V.renderTop3(data);
 }
 
 C.loadGraph = async function(){
