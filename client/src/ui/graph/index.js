@@ -19,17 +19,17 @@ else if (mode == "multiple"){
   }
   values[4] = {
     values: data.values[4],
-    "line-color": "#daef7a",
+    "line-color": "#94bd54",
     marker: {
-      "background-color": "#daef7a"
+      "background-color": "#94bd54"
     },
     text: "Légumes"
   }
   values[3] = {
     values: data.values[3],
-    "line-color": "#fde5b1",
+    "line-color": "#d7c687",
     marker: {
-      "background-color": "#fde5b1"
+      "background-color": "#d7c687"
     },
     text: "Produits Laitiers"
   }
@@ -43,9 +43,9 @@ else if (mode == "multiple"){
   }
   values[1] = {
     values: data.values[1],
-    "line-color": "#91ca76",
+    "line-color": "#28ae71",
     marker: {
-      "background-color": "#91ca76"
+      "background-color": "#28ae71"
     },
     text: "Fruits"
   }

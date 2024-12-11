@@ -12,9 +12,18 @@ class ProduitController extends Controller {
     }
 
     protected function processGetRequest(HttpRequest $request) {
-        $status = $request->getParam("mode");
+        $status = $request->getParam("stat");
         if ($status == "top3") {
-            $produit = $this->produits->find($status);
+            $produit = $this->produits->findTop3();
+
+            if ($produit) {
+                return $produit;
+            }
+            http_response_code(404);
+            return ['error' => 'Produit introuvable'];
+        }
+        if ($status == "lowstock") {
+            $produit = $this->produits->findLowStock();
 
             if ($produit) {
                 return $produit;

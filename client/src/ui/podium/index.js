@@ -1,6 +1,7 @@
-import { genericRenderer } from '../../lib/utils.js';
 const templateFile = await fetch("src/ui/podium/template.html");
 const template = await templateFile.text();
+const templatebaseFile = await fetch("src/ui/podium/templatebase.html");
+const templatebase = await templatebaseFile.text();
 
 let Podium = {};
 
@@ -12,6 +13,8 @@ let Podium = {};
 // }
 
 Podium.render = function(data){
+
+    let templatebase_new = templatebase;
     let template_new = template;
 
     // On formatte les éléments dans l'ordre du podium
@@ -26,7 +29,9 @@ Podium.render = function(data){
         template_new = template_new.replaceAll(`{{backgroundColor${i+1}}}`, backgroundColor);
     }
 
-    return template_new;
+    templatebase_new = templatebase_new.replace('{{podium}}', template_new);
+
+    return templatebase_new;
 }
 
 export { Podium };
