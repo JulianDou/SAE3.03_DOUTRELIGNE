@@ -9,6 +9,32 @@ class ProduitRepository extends EntityRepository {
     }
 
     public function find($id) {
+        $stmt = $this->cnx->prepare("
+            SELECT DATE_FORMAT(order_date, '%Y-%m') as month, SUM(OrderItems.quantity * Products.price) as total_value
+            FROM Orders
+            JOIN OrderItems ON Orders.id = OrderItems.order_id
+            JOIN Products ON OrderItems.product_id = Products.id
+            WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+            AND Products.id = :id
+            GROUP BY month
+            ORDER BY month ASC;
+        ");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $this->cnx->prepare("SELECT product_name FROM Products WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $name = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $final = [
+            "name" => $name,
+            "data" => $result
+        ];
+        if ($final) {
+            return $final;
+        }
         return false;
     }
 
@@ -60,6 +86,14 @@ class ProduitRepository extends EntityRepository {
     }
 
     public function findAll(){
+        $stmt = $this->cnx->prepare("
+            SELECT id, product_name, category FROM Products
+        ");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($result){
+            return $result;
+        }
         return false;
     }
 

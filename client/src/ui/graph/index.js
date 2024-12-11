@@ -6,7 +6,7 @@ let Graph = {};
 //   values: [4, 20, 15, 10, 8, 18],
 // }
 
-Graph.render = function(data, mode){
+Graph.render = function(data, mode, target, title, subtitle){
 
 let values = [];
 if (mode == "single"){
@@ -66,17 +66,14 @@ let chartConfig = {
   type: 'line',
   backgroundColor: '#fff',
   title: {
-    text: 'Total des ventes',
+    text: title,
     align: 'center',
     fontColor: '#000',
     fontFamily: 'Open Sans',
     fontSize: '25px'
   },
-  legend: {
-
-  },
   subtitle: {
-    text: 'Ces 6 derniers mois',
+    text: subtitle,
     align: 'center',
     fontColor: '#777',
     fontFamily: 'Open Sans',
@@ -88,10 +85,14 @@ let chartConfig = {
   series: values,
 };
 
+if (mode == "multiple"){
+  chartConfig.legend = {};
+}
+
 // RENDER CHARTS
 // -----------------------------
 zingchart.render({
-  id: 'sales-graph',
+  id: target,
   data: chartConfig,
   height: '100%',
   width: '100%',
