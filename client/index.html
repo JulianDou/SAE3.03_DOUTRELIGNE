@@ -26,20 +26,20 @@
                 <button id="sales-graph-btn-multiple" data-mode="multiple" class="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded">Par Catégorie</button>
             </div>
         </div>
-        <div id="lowstock-products" class="flex flex-col justify-between items-center gap-2 rounded w-full bg-white min-h-[480px] pb-4">
+        <div id="lowstock-products" class="flex flex-col justify-between col-span-1 lg:col-span-2 2xl:col-span-1  items-center gap-2 rounded w-full bg-white min-h-[480px] pb-4">
             <!-- Tableau de l'itération 7 -->
         </div>
     </div>
 
-    <div class="grid gap-1 grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1">
-        <div class="flex gap-2 bg-white w-full min-h-[360px] p-2 rounded">
-            <div class="flex flex-col gap-2 w-1/4">
+    <div class="grid gap-1 grid-cols-1 grid-rows-2 xl:grid-cols-2 xl:grid-rows-1">
+        <div class="flex flex-col-reverse md:flex-row gap-2 bg-white w-full min-h-[460px] p-2 rounded">
+            <div class="flex flex-row items-center md:flex-col gap-2 w-full md:w-1/4">
                 <p class="font-semibold text-center">Sélectionner un produit :</p>
-                <ul id="product-select" class="flex flex-col gap-1 p-2 bg-gray-300 overflow-y-scroll h-full max-h-[300px] rounded">
+                <ul id="product-select" class="flex flex-col w-full gap-1 p-2 bg-gray-300 overflow-y-scroll h-full max-h-[100px] md:max-h-[400px] rounded">
                     <!-- Liste des produits -->
                 </ul>
             </div>
-            <div id="product-sales" class="w-3/4">
+            <div id="product-sales" class="w-full md:w-3/4 h-full">
                 <!-- Graphique de l'itération 8 -->
             </div>
         </div>
