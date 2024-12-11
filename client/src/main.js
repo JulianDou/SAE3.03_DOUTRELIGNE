@@ -6,7 +6,6 @@ import { Graph } from "./ui/graph/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
-import { salesData } from "./data/ventes.js";
 
 
 let C = {};
@@ -44,8 +43,21 @@ C.loadCamembert = async function(){
 }
 
 C.loadGraph = async function(){
-    let data = await salesData.get6Months();
-    V.renderGraph(data);
+    let data = await ordersData.getTotal("false");
+    V.renderGraph(data, "single");
+    document.querySelector("#sales-graph-btns").addEventListener("click", C.handler__graphBtns);
+}
+
+C.handler__graphBtns = async function(event){
+    let mode = event.target.dataset.mode;
+    if (mode == "single"){
+        let data = await ordersData.getTotal("false");
+        V.renderGraph(data, "single");
+    }
+    else if (mode == "multiple"){
+        let data = await ordersData.getTotal("true");
+        V.renderGraph(data, "multiple");
+    }
 }
 
 C.colorOfCategory = function(category){
@@ -90,8 +102,8 @@ V.renderCamembert = function(data){
     Camembert.render(data);
 }
 
-V.renderGraph = function(data){
-    Graph.render(data);
+V.renderGraph = function(data, mode){
+    Graph.render(data, mode);
 }
 
 

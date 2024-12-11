@@ -6,9 +6,25 @@ let Graph = {};
 //   values: [4, 20, 15, 10, 8, 18],
 // }
 
-Graph.render = function(data){
+Graph.render = function(data, mode){
 
-console.log(data);
+let values = [];
+if (mode == "single"){
+  values = [{"values": data.values}];
+  values[0].text = "Total des ventes";
+}
+else if (mode == "multiple"){
+  for (let i = 0; i < data.values.length; i++){
+    values.push({"values": data.values[i]});
+  }
+  values[4].text = "Légumes";
+  values[3].text = "Produits Laitiers";
+  values[2].text = "Viande";
+  values[1].text = "Fruits";
+  values[0].text = "Boulangerie";
+}
+
+
 // CHART CONFIG
 // -----------------------------
 let chartConfig = {
@@ -21,6 +37,9 @@ let chartConfig = {
     fontFamily: 'Open Sans',
     fontSize: '25px'
   },
+  legend: {
+
+  },
   subtitle: {
     text: 'Ces 6 derniers mois',
     align: 'center',
@@ -31,7 +50,7 @@ let chartConfig = {
   scaleX: {
     labels: data.names
   },
-  series: [{"values": data.values}],
+  series: values,
 };
 
 // RENDER CHARTS
