@@ -41,8 +41,7 @@ class ProduitController extends Controller {
             http_response_code(404);
             return ['error' => 'Produit introuvable'];
         }
-        http_response_code(404);
-        return ['error' => 'Paramètre inconnu'];
+        return $this->produits->findAll();
     }
 
     protected function processPostRequest(HttpRequest $request) {

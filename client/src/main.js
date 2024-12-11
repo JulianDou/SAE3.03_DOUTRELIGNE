@@ -4,6 +4,7 @@ import { BasicCounterView } from "./ui/basic-counter/index.js";
 import { Podium } from "./ui/podium/index.js";
 import { Graph } from "./ui/graph/index.js";
 import { LowStock } from "./ui/lowstock/index.js";
+import { List } from "./ui/listelement/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
@@ -21,6 +22,9 @@ C.init = async function(){
     C.loadGraph();
 
     C.loadLowStock();
+
+    C.loadProduct(1);
+    C.loadProductList();
 }
 
 C.loadCounters = async function(){
@@ -46,6 +50,17 @@ C.loadLowStock = async function(){
     V.renderLowStock(data);
 }
 
+C.loadProduct = async function(id){
+    let data = await productsData.getProduct(id);
+    V.renderProduct(data);
+}
+
+C.loadProductList = async function(){
+    let data = await productsData.getProducts();
+    V.renderProductList(data);
+    V.productlist.addEventListener("click", C.handler__productList);
+}
+
 C.handler__graphBtns = async function(event){
     let mode = event.target.dataset.mode;
     if (mode == "single"){
@@ -58,11 +73,19 @@ C.handler__graphBtns = async function(event){
     }
 }
 
+C.handler__productList = async function(event){
+    if (event.target.id == "list-product-elt"){
+        let id = event.target.dataset.id;
+        C.loadProduct(id);
+    }
+}
+
 let V = {
     header: document.querySelector("#header"),
     basicCounters: document.querySelector("#basic-counters"),
     top3: document.querySelector("#top3-products"),
     lowStock: document.querySelector("#lowstock-products"),
+    productlist: document.querySelector("#product-select")
 };
 
 V.init = function(){
@@ -84,13 +107,21 @@ V.renderTop3 = function(data){
 }
 
 V.renderGraph = function(data, mode){
-    Graph.render(data, mode);
+    Graph.render(data, mode, "sales-graph", "Total des ventes", "Ces 6 derniers mois");
 }
 
 V.renderLowStock = function(data){
     V.lowStock.innerHTML = LowStock.render(data);
     V.lowStock.children[1].firstChild.remove(); // enlève un "undefined" qui s'affichait
     LowStock.color();
+}
+
+V.renderProduct = function(data){
+    Graph.render(data.data, "single", "product-sales", "Ventes pour le produit :", data.name);
+}
+
+V.renderProductList = function(data){
+    V.productlist.innerHTML = List.render(data);
 }
 
 

@@ -22,8 +22,18 @@ class ProduitRepository extends EntityRepository {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($result) {
-            return $result;
+
+        $stmt = $this->cnx->prepare("SELECT product_name FROM Products WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $name = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $final = [
+            "name" => $name,
+            "data" => $result
+        ];
+        if ($final) {
+            return $final;
         }
         return false;
     }
@@ -76,6 +86,14 @@ class ProduitRepository extends EntityRepository {
     }
 
     public function findAll(){
+        $stmt = $this->cnx->prepare("
+            SELECT id, product_name, category FROM Products
+        ");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($result){
+            return $result;
+        }
         return false;
     }
 
