@@ -1,7 +1,7 @@
 import { HeaderView } from "./ui/header/index.js";
 import { BasicCounterView } from "./ui/basic-counter/index.js";
 
-import { Camembert } from "./ui/camembert/index.js";
+import { Podium } from "./ui/podium/index.js";
 import { Graph } from "./ui/graph/index.js";
 
 import { ordersData } from "./data/commandes.js";
@@ -15,7 +15,7 @@ C.init = async function(){
 
     C.loadCounters();
 
-    C.loadCamembert();
+    C.loadTop3();
 
     C.loadGraph();
 }
@@ -27,19 +27,19 @@ C.loadCounters = async function(){
     V.renderBasicCounter(pendingCount, shippedCount, deliveredCount);
 }
 
-C.loadCamembert = async function(){
+C.loadTop3 = async function(){
     let data = await productsData.getTop3Products();
-    let camembertData = [];
+    let top3Data = [];
     for (let elt of data){
-        let color = C.colorOfCategory(elt.category);
+        let color = elt.category.toLowerCase();
         let obj = {
             text: elt.product_name,
-            values: [elt.quantity_sold],
+            values: elt.quantity_sold,
             backgroundColor: color
         }
-        camembertData.push(obj);
+        top3Data.push(obj);
     }
-    V.renderCamembert(camembertData);
+    V.renderTop3(top3Data);
 }
 
 C.loadGraph = async function(){
@@ -60,28 +60,10 @@ C.handler__graphBtns = async function(event){
     }
 }
 
-C.colorOfCategory = function(category){
-    switch(category){
-        case "Dairy":
-            return "#fde5b1";
-
-        case "Meat":
-            return "#ec857f";
-        
-        case "Fruits":
-            return "#91ca76";
-        
-        case "Vegetables":
-            return "#daef7a";
-        
-        case "Bakery":
-            return "#da9660";
-    }
-}
-
 let V = {
     header: document.querySelector("#header"),
-    basicCounters: document.querySelector("#basic-counters")
+    basicCounters: document.querySelector("#basic-counters"),
+    top3: document.querySelector("#top3-products"),
 };
 
 V.init = function(){
@@ -98,8 +80,8 @@ V.renderBasicCounter = function(pendingCount, shippedCount, deliveredCount){
     V.basicCounters.innerHTML += BasicCounterView.render(deliveredCount, "Livrées");
 }
 
-V.renderCamembert = function(data){
-    Camembert.render(data);
+V.renderTop3 = function(data){
+    V.top3.innerHTML = Podium.render(data);
 }
 
 V.renderGraph = function(data, mode){
