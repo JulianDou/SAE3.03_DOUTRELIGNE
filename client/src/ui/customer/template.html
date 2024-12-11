@@ -1,0 +1,40 @@
+<div class="flex flex-col justify-center text-center font-bold mt-1">
+    <p class="text-[25px]">Fiche du client :</p>
+    <p class="text-[12px] text-[#777] mt-[-4px]">{{firs_name}} {{last_name}} - {{city}}, {{country}} - {{email}}</p>
+</div>
+<div id="client-product-list" class="grid grid-cols-5 gap-2 max-h-[360px] h-full">
+    <div class="flex flex-col gap-2 max-h-[360px]">
+        <p class="font-semibold text-center">Produits Laitiers</p>
+        <ul class="flex flex-col w-full gap-1 p-2 bg-gray-300 overflow-y-scroll rounded">
+            {{dairies}}
+        </ul>
+    </div>
+    
+    <div class="flex flex-col gap-2 max-h-[360px]">
+        <p class="font-semibold text-center">Viande</p>
+        <ul class="flex flex-col w-full gap-1 p-2 bg-gray-300  overflow-y-scroll rounded">
+            {{meat}}
+        </ul>
+    </div>
+    
+    <div class="flex flex-col gap-2 max-h-[360px]">
+        <p class="font-semibold text-center">Fruits</p>
+        <ul class="flex flex-col w-full gap-1 p-2 bg-gray-300  overflow-y-scroll rounded">
+            {{fruits}}
+        </ul>
+    </div>
+    
+    <div class="flex flex-col gap-2 max-h-[360px]">
+        <p class="font-semibold text-center">Légumes</p>
+        <ul class="flex flex-col w-full gap-1 p-2 bg-gray-300 overflow-y-scroll rounded">
+            {{vegetables}}
+        </ul>
+    </div>
+    
+    <div class="flex flex-col gap-2 max-h-[360px]">
+        <p class="font-semibold text-center">Boulangerie</p>
+        <ul class="flex flex-col w-full gap-1 p-2 bg-gray-300  overflow-y-scroll rounded">
+            {{bakery}}
+        </ul>
+    </div>
+</div>

@@ -109,7 +109,7 @@
 }
 
 /*
-! tailwindcss v3.4.13 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -552,7 +552,7 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden] {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
 
@@ -614,32 +614,40 @@ video {
   height: 100%;
 }
 
-.h-\[360px\]{
-  height: 360px;
-}
-
-.max-h-\[300px\]{
-  max-height: 300px;
-}
-
-.max-h-\[60px\]{
-  max-height: 60px;
+.h-\[320px\]{
+  height: 320px;
 }
 
 .max-h-\[100px\]{
   max-height: 100px;
 }
 
+.max-h-\[360px\]{
+  max-height: 360px;
+}
+
+.max-h-\[380px\]{
+  max-height: 380px;
+}
+
+.max-h-\[370px\]{
+  max-height: 370px;
+}
+
+.max-h-\[320px\]{
+  max-height: 320px;
+}
+
 .min-h-\[360px\]{
   min-height: 360px;
 }
 
-.min-h-\[480px\]{
-  min-height: 480px;
-}
-
 .min-h-\[460px\]{
   min-height: 460px;
+}
+
+.min-h-\[480px\]{
+  min-height: 480px;
 }
 
 .w-16{
@@ -650,20 +658,8 @@ video {
   width: 1rem;
 }
 
-.w-\[500px\]{
-  width: 500px;
-}
-
 .w-full{
   width: 100%;
-}
-
-.w-1\/4{
-  width: 25%;
-}
-
-.w-3\/4{
-  width: 75%;
 }
 
 .min-w-16{
@@ -672,10 +668,6 @@ video {
 
 .flex-shrink-0{
   flex-shrink: 0;
-}
-
-.flex-grow{
-  flex-grow: 1;
 }
 
 .grid-cols-1{
@@ -688,6 +680,10 @@ video {
 
 .grid-cols-3{
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-5{
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .grid-rows-2{
@@ -764,68 +760,59 @@ video {
   border-top-right-radius: 0.25rem;
 }
 
-.border-2{
-  border-width: 2px;
-}
-
-.border-white{
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .bg-amber-300{
   --tw-bg-opacity: 1;
-  background-color: rgb(252 211 77 / var(--tw-bg-opacity));
+  background-color: rgb(252 211 77 / var(--tw-bg-opacity, 1));
 }
 
 .bg-amber-700{
   --tw-bg-opacity: 1;
-  background-color: rgb(180 83 9 / var(--tw-bg-opacity));
+  background-color: rgb(180 83 9 / var(--tw-bg-opacity, 1));
 }
 
 .bg-bakery{
   --tw-bg-opacity: 1;
-  background-color: rgb(218 150 96 / var(--tw-bg-opacity));
+  background-color: rgb(218 150 96 / var(--tw-bg-opacity, 1));
 }
 
 .bg-blue-500{
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
 }
 
 .bg-dairy{
   --tw-bg-opacity: 1;
-  background-color: rgb(215 198 135 / var(--tw-bg-opacity));
+  background-color: rgb(215 198 135 / var(--tw-bg-opacity, 1));
 }
 
 .bg-fruits{
   --tw-bg-opacity: 1;
-  background-color: rgb(40 174 113 / var(--tw-bg-opacity));
+  background-color: rgb(40 174 113 / var(--tw-bg-opacity, 1));
 }
 
 .bg-gray-300{
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
 }
 
 .bg-meat{
   --tw-bg-opacity: 1;
-  background-color: rgb(236 133 127 / var(--tw-bg-opacity));
+  background-color: rgb(236 133 127 / var(--tw-bg-opacity, 1));
 }
 
 .bg-slate-300{
   --tw-bg-opacity: 1;
-  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity, 1));
 }
 
 .bg-vegetables{
   --tw-bg-opacity: 1;
-  background-color: rgb(148 189 84 / var(--tw-bg-opacity));
+  background-color: rgb(148 189 84 / var(--tw-bg-opacity, 1));
 }
 
 .bg-white{
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
 .p-1{
@@ -903,42 +890,42 @@ video {
 
 .text-\[\#777\]{
   --tw-text-opacity: 1;
-  color: rgb(119 119 119 / var(--tw-text-opacity));
+  color: rgb(119 119 119 / var(--tw-text-opacity, 1));
 }
 
 .text-bakery{
   --tw-text-opacity: 1;
-  color: rgb(218 150 96 / var(--tw-text-opacity));
+  color: rgb(218 150 96 / var(--tw-text-opacity, 1));
 }
 
 .text-black{
   --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 .text-dairy{
   --tw-text-opacity: 1;
-  color: rgb(215 198 135 / var(--tw-text-opacity));
+  color: rgb(215 198 135 / var(--tw-text-opacity, 1));
 }
 
 .text-fruits{
   --tw-text-opacity: 1;
-  color: rgb(40 174 113 / var(--tw-text-opacity));
+  color: rgb(40 174 113 / var(--tw-text-opacity, 1));
 }
 
 .text-meat{
   --tw-text-opacity: 1;
-  color: rgb(236 133 127 / var(--tw-text-opacity));
+  color: rgb(236 133 127 / var(--tw-text-opacity, 1));
 }
 
 .text-vegetables{
   --tw-text-opacity: 1;
-  color: rgb(148 189 84 / var(--tw-text-opacity));
+  color: rgb(148 189 84 / var(--tw-text-opacity, 1));
 }
 
 .text-white{
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 body{
@@ -951,21 +938,11 @@ body{
 
 .hover\:bg-blue-700:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:brightness-90:hover{
   --tw-brightness: brightness(.9);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.hover\:brightness-110:hover{
-  --tw-brightness: brightness(1.1);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.hover\:brightness-125:hover{
-  --tw-brightness: brightness(1.25);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -975,20 +952,12 @@ body{
 }
 
 @media (min-width: 768px){
-  .md\:col-span-2{
-    grid-column: span 2 / span 2;
-  }
-
-  .md\:max-h-\[300px\]{
-    max-height: 300px;
-  }
-
-  .md\:max-h-full{
-    max-height: 100%;
-  }
-
   .md\:max-h-\[400px\]{
     max-height: 400px;
+  }
+
+  .md\:max-h-\[360px\]{
+    max-height: 360px;
   }
 
   .md\:w-1\/4{

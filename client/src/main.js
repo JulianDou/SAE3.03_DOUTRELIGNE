@@ -5,9 +5,11 @@ import { Podium } from "./ui/podium/index.js";
 import { Graph } from "./ui/graph/index.js";
 import { LowStock } from "./ui/lowstock/index.js";
 import { List } from "./ui/listelement/index.js";
+import { Customer } from "./ui/customer/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
+import { customersData } from "./data/clients.js";
 
 
 let C = {};
@@ -25,6 +27,9 @@ C.init = async function(){
 
     C.loadProduct(1);
     C.loadProductList();
+
+    C.loadCustomer(1);
+    C.loadCustomerList();
 }
 
 C.loadCounters = async function(){
@@ -61,6 +66,19 @@ C.loadProductList = async function(){
     V.productlist.addEventListener("click", C.handler__productList);
 }
 
+C.loadCustomer = async function(id){
+    let customerData = await customersData.getCustomer(id);
+    let productsData = await ordersData.getByCustomer(id);
+    V.renderCustomer(customerData, productsData);
+    document.querySelector("#client-product-list").addEventListener("click", C.handler__productList);
+}
+
+C.loadCustomerList = async function(){
+    let data = await customersData.getCustomers();
+    V.renderCustomersList(data);
+    V.customerslist.addEventListener("click", C.handler__customerList);
+}
+
 C.handler__graphBtns = async function(event){
     let mode = event.target.dataset.mode;
     if (mode == "single"){
@@ -74,9 +92,16 @@ C.handler__graphBtns = async function(event){
 }
 
 C.handler__productList = async function(event){
-    if (event.target.id == "list-product-elt"){
+    if (event.target.id == "list-elt"){
         let id = event.target.dataset.id;
         C.loadProduct(id);
+    }
+}
+
+C.handler__customerList = async function(event){
+    if (event.target.id == "list-elt"){
+        let id = event.target.dataset.id;
+        C.loadCustomer(id);
     }
 }
 
@@ -85,7 +110,9 @@ let V = {
     basicCounters: document.querySelector("#basic-counters"),
     top3: document.querySelector("#top3-products"),
     lowStock: document.querySelector("#lowstock-products"),
-    productlist: document.querySelector("#product-select")
+    productlist: document.querySelector("#product-select"),
+    customerslist: document.querySelector("#customer-select"),
+    customerinfo: document.querySelector("#client-info"),
 };
 
 V.init = function(){
@@ -122,6 +149,14 @@ V.renderProduct = function(data){
 
 V.renderProductList = function(data){
     V.productlist.innerHTML = List.render(data);
+}
+
+V.renderCustomer = function(customerData, productsData){
+    V.customerinfo.innerHTML = Customer.render(customerData, productsData);
+}
+
+V.renderCustomersList = function(data){
+    V.customerslist.innerHTML = List.render(data);
 }
 
 
