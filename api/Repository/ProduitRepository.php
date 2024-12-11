@@ -8,34 +8,53 @@ class ProduitRepository extends EntityRepository {
         parent::__construct();
     }
 
-    public function find($mode): array {
-        if ($mode == "top3"){            
-            $stmt = $this->cnx->prepare("
-                SELECT product_id, SUM(quantity) as total_quantity
-                FROM OrderItems
-                WHERE order_id IN (
-                    SELECT id
-                    FROM Orders
-                    WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH)
-                )
-                GROUP BY product_id
-                ORDER BY total_quantity DESC
-                LIMIT 3;
-            ");
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if ($result) {
-                $produits = [];
-                foreach ($result as $obj) {
-                    $stmt = $this->cnx->prepare("SELECT * FROM Products WHERE id = :id");
-                    $stmt->bindParam(':id', $obj['product_id']);
-                    $stmt->execute();
-                    $produit = $stmt->fetch(PDO::FETCH_ASSOC);
-                    array_push($produits, new Produit($produit['id'], $produit['product_name'], $produit['category'], $produit['price'], $produit['quantity'], $produit['stock'], $obj['total_quantity']));
-                }
-                return $produits;
+    public function find($id) {
+        return false;
+    }
+
+    public function findTop3(): array{
+        $stmt = $this->cnx->prepare("
+            SELECT product_id, SUM(quantity) as total_quantity
+            FROM OrderItems
+            WHERE order_id IN (
+                SELECT id
+                FROM Orders
+                WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH)
+            )
+            GROUP BY product_id
+            ORDER BY total_quantity DESC
+            LIMIT 3;
+        ");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($result) {
+            $produits = [];
+            foreach ($result as $obj) {
+                $stmt = $this->cnx->prepare("SELECT * FROM Products WHERE id = :id");
+                $stmt->bindParam(':id', $obj['product_id']);
+                $stmt->execute();
+                $produit = $stmt->fetch(PDO::FETCH_ASSOC);
+                array_push($produits, new Produit($produit['id'], $produit['product_name'], $produit['category'], $produit['price'], $produit['quantity'], $produit['stock'], $obj['total_quantity']));
             }
-            return false;
+            return $produits;
+        }
+        return false;
+    }
+
+    public function findLowStock(): array{
+        $stmt = $this->cnx->prepare("
+            SELECT * FROM Products 
+            ORDER BY stock ASC
+            LIMIT 10;
+        ");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($result) {
+            $produits = [];
+            foreach ($result as $obj) {
+                array_push($produits, new Produit($obj['id'], $obj['product_name'], $obj['category'], $obj['price'], $obj['quantity'], $obj['stock'], null));
+            }
+            return $produits;
         }
         return false;
     }
