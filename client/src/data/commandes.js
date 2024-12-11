@@ -53,4 +53,9 @@ ordersData.getTotal = async function(mode){
     return data;
 }
 
+ordersData.getByCustomer = async function(id){
+    let data = await getRequest(`commandes?customer=${id}`);
+    return data;
+}
+
 export { ordersData };

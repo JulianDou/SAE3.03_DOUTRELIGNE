@@ -61,6 +61,24 @@ class CommandeRepository extends EntityRepository {
         return false;
     }
 
+    public function findByCustomer($customer){
+        $stmt = $this->cnx->prepare("
+            SELECT Products.id, Products.product_name, OrderItems.quantity, Products.category
+            FROM Orders
+            JOIN OrderItems ON Orders.id = OrderItems.order_id
+            JOIN Products ON OrderItems.product_id = Products.id
+            WHERE Orders.customer_id = :customer
+            ORDER BY Products.category;
+        ");
+        $stmt->bindParam(':customer', $customer, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result;
+        }
+        return false;
+    }
+
     public function findAll(){
         return false;
     }
