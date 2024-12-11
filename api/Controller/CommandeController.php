@@ -19,7 +19,7 @@ class CommandeController extends Controller {
                 return $this->commandes->findTotal("true");
             }
             return $this->commandes->findTotal("false");
-        }        
+        }
         $status = $request->getParam("status");
         if ($status == "Pending" || $status == "Delivered" || $status == "Shipped") {
             $commande = $this->commandes->find($status);
@@ -29,6 +29,16 @@ class CommandeController extends Controller {
             }
             http_response_code(404);
             return ['error' => 'Commande introuvable'];
+        }
+        $customer = $request->getParam("customer");
+        if ($customer) {
+            $commande = $this->commandes->findByCustomer($customer);
+
+            if ($commande) {
+                return $commande;
+            }
+            http_response_code(404);
+            return ['error' => 'Client introuvable'];
         }
         http_response_code(404);
         return ['error' => 'Paramètre inconnu'];
