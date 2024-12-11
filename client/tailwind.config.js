@@ -8,10 +8,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dairy': '#fde5b1',
+        'dairy': '#d7c687',
         'meat': '#ec857f',
-        'fruits': '#91ca76',
-        'vegetables': '#daef7a',
+        'fruits': '#28ae71',
+        'vegetables': '#94bd54',
         'bakery': '#da9660',
       }
     },

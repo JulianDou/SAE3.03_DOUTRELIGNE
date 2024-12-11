@@ -3,6 +3,7 @@ import { BasicCounterView } from "./ui/basic-counter/index.js";
 
 import { Podium } from "./ui/podium/index.js";
 import { Graph } from "./ui/graph/index.js";
+import { LowStock } from "./ui/lowstock/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
@@ -18,6 +19,8 @@ C.init = async function(){
     C.loadTop3();
 
     C.loadGraph();
+
+    C.loadLowStock();
 }
 
 C.loadCounters = async function(){
@@ -38,6 +41,11 @@ C.loadGraph = async function(){
     document.querySelector("#sales-graph-btns").addEventListener("click", C.handler__graphBtns);
 }
 
+C.loadLowStock = async function(){
+    let data = await productsData.getLowStock();
+    V.renderLowStock(data);
+}
+
 C.handler__graphBtns = async function(event){
     let mode = event.target.dataset.mode;
     if (mode == "single"){
@@ -54,6 +62,7 @@ let V = {
     header: document.querySelector("#header"),
     basicCounters: document.querySelector("#basic-counters"),
     top3: document.querySelector("#top3-products"),
+    lowStock: document.querySelector("#lowstock-products"),
 };
 
 V.init = function(){
@@ -76,6 +85,12 @@ V.renderTop3 = function(data){
 
 V.renderGraph = function(data, mode){
     Graph.render(data, mode);
+}
+
+V.renderLowStock = function(data){
+    V.lowStock.innerHTML = LowStock.render(data);
+    V.lowStock.children[1].firstChild.remove(); // enlève un "undefined" qui s'affichait
+    LowStock.color();
 }
 
 
