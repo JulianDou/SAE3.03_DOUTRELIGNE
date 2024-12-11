@@ -17,11 +17,46 @@ else if (mode == "multiple"){
   for (let i = 0; i < data.values.length; i++){
     values.push({"values": data.values[i]});
   }
-  values[4].text = "Légumes";
-  values[3].text = "Produits Laitiers";
-  values[2].text = "Viande";
-  values[1].text = "Fruits";
-  values[0].text = "Boulangerie";
+  values[4] = {
+    values: data.values[4],
+    "line-color": "#daef7a",
+    marker: {
+      "background-color": "#daef7a"
+    },
+    text: "Légumes"
+  }
+  values[3] = {
+    values: data.values[3],
+    "line-color": "#fde5b1",
+    marker: {
+      "background-color": "#fde5b1"
+    },
+    text: "Produits Laitiers"
+  }
+  values[2] = {
+    values: data.values[2],
+    "line-color": "#ec857f",
+    marker: {
+      "background-color": "#ec857f"
+    },
+    text: "Viande"
+  }
+  values[1] = {
+    values: data.values[1],
+    "line-color": "#91ca76",
+    marker: {
+      "background-color": "#91ca76"
+    },
+    text: "Fruits"
+  }
+  values[0] = {
+    values: data.values[0],
+    "line-color": "#da9660",
+    marker: {
+      "background-color": "#da9660"
+    },
+    text: "Boulangerie"
+  }
 }
 
 

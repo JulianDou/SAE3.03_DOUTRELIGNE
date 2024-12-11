@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tailwind": "tailwindcss -i ./src/index.css -o ./src/dist/output.css --watch"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
