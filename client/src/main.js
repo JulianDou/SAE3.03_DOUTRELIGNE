@@ -6,6 +6,8 @@ import { Graph } from "./ui/graph/index.js";
 import { LowStock } from "./ui/lowstock/index.js";
 import { List } from "./ui/listelement/index.js";
 import { Customer } from "./ui/customer/index.js";
+import { Bars } from "./ui/bars/index.js";
+import { Camembert } from "./ui/camembert/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
@@ -71,12 +73,23 @@ C.loadCustomer = async function(id){
     let productsData = await ordersData.getByCustomer(id);
     V.renderCustomer(customerData, productsData);
     document.querySelector("#client-product-list").addEventListener("click", C.handler__productList);
+    document.querySelector("#customer-switch").addEventListener("click", C.handler__switchCustomerMode);
 }
 
 C.loadCustomerList = async function(){
     let data = await customersData.getCustomers();
     V.renderCustomersList(data);
     V.customerslist.addEventListener("click", C.handler__customerList);
+}
+
+C.loadCustomerBars = async function(id){
+    let productsData = await ordersData.getByCustomer(id);
+    V.renderCustomerBars(productsData);
+}
+
+C.loadCustomerPie = async function(id){
+    let productsData = await ordersData.getByCustomer(id);
+    V.renderCustomerPie(productsData);
 }
 
 C.handler__graphBtns = async function(event){
@@ -105,6 +118,25 @@ C.handler__customerList = async function(event){
     }
 }
 
+C.handler__switchCustomerMode = async function(event){
+    // le switch peut être soit en mode "detail", "barres" ou "pie"
+    if (event.target.dataset.mode == "detail"){
+        event.target.dataset.mode = "barres";
+        event.target.innerHTML = "Vue en secteurs";
+        C.loadCustomerBars(event.target.dataset.id);
+    }
+    else if (event.target.dataset.mode == "barres"){
+        event.target.dataset.mode = "pie";
+        event.target.innerHTML = "Vue en détail";
+        C.loadCustomerPie(event.target.dataset.id);
+    }
+    else {
+        event.target.dataset.mode = "detail";
+        event.target.innerHTML = "Vue en barres";
+        C.loadCustomer(event.target.dataset.id);
+    }
+}
+
 let V = {
     header: document.querySelector("#header"),
     basicCounters: document.querySelector("#basic-counters"),
@@ -113,6 +145,7 @@ let V = {
     productlist: document.querySelector("#product-select"),
     customerslist: document.querySelector("#customer-select"),
     customerinfo: document.querySelector("#client-info"),
+    customerswitch : document.querySelector("#customer-switch")
 };
 
 V.init = function(){
@@ -158,6 +191,17 @@ V.renderCustomer = function(customerData, productsData){
 V.renderCustomersList = function(data){
     V.customerslist.innerHTML = List.render(data);
 }
+
+V.renderCustomerBars = function(data){
+    document.querySelector("#client-product-list").innerHTML = "";
+    Bars.render(data, "client-product-list");
+}
+
+V.renderCustomerPie = function(data){
+    document.querySelector("#client-product-list").innerHTML = "";
+    Camembert.render(data, "client-product-list");
+}
+
 
 
 C.init();
