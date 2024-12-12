@@ -35,6 +35,7 @@ C.init = async function(){
     C.loadCustomerList();
 
     C.loadSunburst("2025-01");
+    C.loadSunburstList();
 }
 
 C.loadCounters = async function(){
@@ -100,6 +101,12 @@ C.loadSunburst = async function(month){
     V.renderSunburst(data, month);
 }
 
+C.loadSunburstList = async function(){
+    let data = await ordersData.getWorld();
+    V.renderSunburstList(data);
+    document.querySelector("#sunburst-select").addEventListener("click", C.handler__sunburstList);
+}
+
 C.handler__graphBtns = async function(event){
     let mode = event.target.dataset.mode;
     if (mode == "single"){
@@ -123,6 +130,13 @@ C.handler__customerList = async function(event){
     if (event.target.id == "list-elt"){
         let id = event.target.dataset.id;
         C.loadCustomer(id);
+    }
+}
+
+C.handler__sunburstList = async function(event){
+    if (event.target.id == "list-elt"){
+        let month = event.target.dataset.id;
+        C.loadSunburst(month);
     }
 }
 
@@ -213,6 +227,10 @@ V.renderCustomerPie = function(data){
 V.renderSunburst = function(data, month){
     document.querySelector("#sunburst-month").innerHTML = month;
     Sunburst.render(data, month, "sunburst");
+}
+
+V.renderSunburstList = function(data){
+    document.querySelector("#sunburst-select").innerHTML = List.render(data);
 }
 
 C.init();

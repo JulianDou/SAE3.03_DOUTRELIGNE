@@ -62,8 +62,8 @@ ordersData.getWorld = async function(){
     let data = await getRequest("commandes?stat=world");
     let new_data = {};
 
-    let months = [];
-    for (let elt of data){
+    let months = {};
+    for (let elt of data) {
         let month = elt.order_date.slice(0, -3);
         if (!months[month]) {
             months[month] = [];
@@ -71,48 +71,61 @@ ordersData.getWorld = async function(){
         months[month].push(elt);
     }
 
-    new_data = months;
+    new_data = [];
 
-    for (let month in new_data) {
+    for (let month in months) {
         let countries = {};
-        for (let order of new_data[month]) {
+        for (let order of months[month]) {
             let country = order.country;
             if (!countries[country]) {
-                countries[country] = [];
+                countries[country] = {};
             }
-            countries[country].push(order);
-        }
-        new_data[month] = countries;
-    }
-
-    for (let month in new_data) {
-        for (let country in new_data[month]) {
-            let cities = {};
-            for (let order of new_data[month][country]) {
-                let city = order.city;
-                if (!cities[city]) {
-                    cities[city] = [];
-                }
-                cities[city].push(order);
+            let city = order.city;
+            if (!countries[country][city]) {
+                countries[country][city] = [];
             }
-            new_data[month][country] = cities;
+            countries[country][city].push(order);
         }
+        let countriesArray = [];
+        for (let country in countries) {
+            let citiesArray = [];
+            for (let city in countries[country]) {
+                citiesArray.push({
+                    name: city,
+                    orders: countries[country][city]
+                });
+            }
+            countriesArray.push({
+                name: country,
+                cities: citiesArray
+            });
+        }
+        new_data.push({
+            month: month,
+            countries: countriesArray
+        });
     }
 
     /* FORMAT FINAL DES DONNEES
 
     new_data = {
-        mois: {
-            pays: {
-                ville: [commandes],
-                ville: [commandes]
-            },
-            pays: {
-                ville: [commandes]
-            }
-        },
-        mois: {
-            ...
+        {
+            month: "2020-01",
+            countries: [
+                {
+                    name: "France",
+                    cities: [
+                        {
+                            name: "Paris",
+                            orders: [order]
+                        },
+                        {
+                            name: "Lyon",
+                            orders: [order]
+                        }
+                    ]
+                }
+            ]
         }
     }
 

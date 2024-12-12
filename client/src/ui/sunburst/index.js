@@ -1,27 +1,38 @@
 let Sunburst = {};
 
 Sunburst.render = function(data, month, target){
+    
+    for (let elt of data) {
+        if(elt.month == month){
+            data = elt;
+            break;
+        }
+    }
+
+    console.log(data);
 
     /* RAPPEL : FORMAT DES DONNEES
 
     new_data = {
-        mois: {
-            pays: {
-                ville: [commandes],
-                ville: [commandes]
-            },
-            pays: {
-                ville: [commandes]
+        month: "2020-01",
+        countries: [
+            {
+                name: "France",
+                cities: [
+                    {
+                        name: "Paris",
+                        orders: [order]
+                    },
+                    {
+                        name: "Lyon",
+                        orders: [order]
+                    }
+                ]
             }
-        },
-        mois: {
-            ...
-        }
+        ]
     }
 
     */
-
-    data = data[month];
 
     let chartData = [
         {
@@ -32,24 +43,28 @@ Sunburst.render = function(data, month, target){
         // Le reste est dynamique
     ];
 
-    for (let country in data) {
+    for (let country of data.countries) {
         let countryData = {
-            id: country,
-            text: country,
+            id: country.name,
+            text: country.name,
             parent: "Total",
-            value: data[country].length
         };
-        chartData.push(countryData);
 
-        for (let city in data[country]) {
+        let country_value = 0;
+        for (let city of country.cities) {
             let cityData = {
-                id: city,
-                text: city,
-                parent: country,
-                value: data[country][city].length
+                id: city.name,
+                text: city.name,
+                parent: country.name,
+                value: city.orders.length,
             };
+            country_value += city.orders.length;
             chartData.push(cityData);
         }
+
+        countryData.value = country_value;
+
+        chartData.push(countryData);
     }
 
     let chartConfig = {
