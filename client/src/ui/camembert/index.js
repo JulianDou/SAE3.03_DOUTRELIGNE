@@ -1,63 +1,69 @@
 let Camembert = {};
 
-// Exemple de data
-// {
-//   text: 'IE and Edge',
-//   values: [4.8],
-//   backgroundColor: '#50ADF5'
-// }
+Camembert.render = function(productData, target){
 
-Camembert.render = function(data){
+let sortedData = {
+  dairies: 0,
+  meat: 0,
+  fruits: 0,
+  vegetables: 0,
+  bakery: 0
+}
+
+for (let product of productData){
+  if (product.category == "Dairy"){
+    sortedData.dairies += product.quantity;
+  } else if (product.category == "Meat"){
+    sortedData.meat += product.quantity;
+  } else if (product.category == "Fruits"){
+    sortedData.fruits += product.quantity;
+  } else if (product.category == "Vegetables"){
+    sortedData.vegetables += product.quantity;
+  } else if (product.category == "Bakery"){
+    sortedData.bakery += product.quantity;
+  }
+}
+
+let new_data = [
+  {
+    values: [sortedData.dairies],
+    text: "Produits Laitiers",
+    backgroundColor: "#d7c687"
+  },
+  {
+    values: [sortedData.meat],
+    text: "Viande",
+    backgroundColor: "#ec857f"
+  },
+  {
+    values: [sortedData.fruits],
+    text: "Fruits",
+    backgroundColor: "#28ae71"
+  },
+  {
+    values: [sortedData.vegetables],
+    text: "Légumes",
+    backgroundColor: "#94bd54"
+  },
+  {
+    values: [sortedData.bakery],
+    text: "Boulangerie",
+    backgroundColor: "#da9660"
+  }
+];
+
 // CHART CONFIG
 // -----------------------------
 let chartConfig = {
   type: 'pie',
-  backgroundColor: '#fff',
-  title: {
-    text: 'Produits les plus vendus',
-    align: 'center',
-    fontColor: '#000',
-    fontFamily: 'Open Sans',
-    fontSize: '25px'
-  },
-  subtitle: {
-    text: 'Ces 2 derniers mois',
-    align: 'center',
-    fontColor: '#777',
-    fontFamily: 'Open Sans',
-    fontSize: '12px',
-  },
-  plot: {
-    tooltip: {
-      text: '%v',
-      padding: '5px 10px',
-      fontFamily: 'Open Sans',
-      fontSize: '18px'
-    },
-    valueBox: {
-      text: '%t\n%v ventes',
-      fontFamily: 'Open Sans',
-      placement: 'out'
-    },
-    animation: {
-      effect: 'ANIMATION_EXPAND_VERTICAL',
-      method: 'ANIMATION_REGULAR_EASE_OUT',
-      sequence: 'ANIMATION_BY_PLOT',
-      speed: 500
-    },
-    borderColor: '#fff',
-    borderWidth: '4px'
-  },
-  plotarea: {
-    margin: '20px 0 0 0'
-  },
-  series: data
+  series: new_data,
+  legend: {},
 };
 
 // RENDER CHARTS
 // -----------------------------
 zingchart.render({
-  id: 'top3-products',
+  id: target,
   data: chartConfig,
   height: '100%',
   width: '100%',
