@@ -79,6 +79,21 @@ class CommandeRepository extends EntityRepository {
         return false;
     }
 
+    public function findWorld(){
+        $stmt = $this->cnx->prepare("
+            SELECT Customers.country, Customers.city, Orders.id, Orders.order_date
+            FROM Orders
+            JOIN Customers ON Orders.customer_id = Customers.id
+            ORDER BY Orders.order_date, Customers.country, Customers.city;
+        ");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result;
+        }
+        return false;
+    }
+
     public function findAll(){
         return false;
     }

@@ -43,3 +43,11 @@ WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
 AND Products.id = ?
 GROUP BY month
 ORDER BY month ASC;
+
+
+ventes par pays (clients)
+
+SELECT Customers.country, Customers.city, Orders.id, Orders.order_date
+FROM Orders
+JOIN Customers ON Orders.customer_id = Customers.id
+ORDER BY Orders.order_date, Customers.country, Customers.city;

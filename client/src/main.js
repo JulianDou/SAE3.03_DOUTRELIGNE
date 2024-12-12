@@ -202,6 +202,4 @@ V.renderCustomerPie = function(data){
     Camembert.render(data, "client-product-list");
 }
 
-
-
 C.init();
