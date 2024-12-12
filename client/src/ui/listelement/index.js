@@ -6,6 +6,7 @@ import { genericRenderer } from "../../lib/utils.js";
 let List = {};
 
 List.render = function(data){
+
     let template_new = template;
     let final = "";
 
@@ -22,10 +23,16 @@ List.render = function(data){
             }
             
         }
-        else { // l'élément est un client
+        else if (elt.firs_name) { // l'élément est un client
             elt.color = "white";
             elt.name = elt.firs_name + " " + elt.last_name;
             elt.quantity = elt.id + " -";
+        }
+        else { // l'élément est un mois
+            elt.name = elt.month;
+            elt.id = elt.name;
+            elt.color = "white";
+            elt.quantity = "";
         }
         template_new = genericRenderer(template_new, elt);
         final += template_new;

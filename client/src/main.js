@@ -8,6 +8,7 @@ import { List } from "./ui/listelement/index.js";
 import { Customer } from "./ui/customer/index.js";
 import { Bars } from "./ui/bars/index.js";
 import { Camembert } from "./ui/camembert/index.js";
+import { Sunburst } from "./ui/sunburst/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
@@ -32,6 +33,9 @@ C.init = async function(){
 
     C.loadCustomer(1);
     C.loadCustomerList();
+
+    C.loadSunburst("2025-01");
+    C.loadSunburstList();
 }
 
 C.loadCounters = async function(){
@@ -92,6 +96,17 @@ C.loadCustomerPie = async function(id){
     V.renderCustomerPie(productsData);
 }
 
+C.loadSunburst = async function(month){
+    let data = await ordersData.getWorld();
+    V.renderSunburst(data, month);
+}
+
+C.loadSunburstList = async function(){
+    let data = await ordersData.getWorld();
+    V.renderSunburstList(data);
+    document.querySelector("#sunburst-select").addEventListener("click", C.handler__sunburstList);
+}
+
 C.handler__graphBtns = async function(event){
     let mode = event.target.dataset.mode;
     if (mode == "single"){
@@ -115,6 +130,13 @@ C.handler__customerList = async function(event){
     if (event.target.id == "list-elt"){
         let id = event.target.dataset.id;
         C.loadCustomer(id);
+    }
+}
+
+C.handler__sunburstList = async function(event){
+    if (event.target.id == "list-elt"){
+        let month = event.target.dataset.id;
+        C.loadSunburst(month);
     }
 }
 
@@ -202,6 +224,13 @@ V.renderCustomerPie = function(data){
     Camembert.render(data, "client-product-list");
 }
 
+V.renderSunburst = function(data, month){
+    document.querySelector("#sunburst-month").innerHTML = month;
+    Sunburst.render(data, month, "sunburst");
+}
 
+V.renderSunburstList = function(data){
+    document.querySelector("#sunburst-select").innerHTML = List.render(data);
+}
 
 C.init();

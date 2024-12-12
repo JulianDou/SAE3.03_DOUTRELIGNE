@@ -58,4 +58,80 @@ ordersData.getByCustomer = async function(id){
     return data;
 }
 
+ordersData.getWorld = async function(){
+    let data = await getRequest("commandes?stat=world");
+    let new_data = {};
+
+    let months = {};
+    for (let elt of data) {
+        let month = elt.order_date.slice(0, -3);
+        if (!months[month]) {
+            months[month] = [];
+        }
+        months[month].push(elt);
+    }
+
+    new_data = [];
+
+    for (let month in months) {
+        let countries = {};
+        for (let order of months[month]) {
+            let country = order.country;
+            if (!countries[country]) {
+                countries[country] = {};
+            }
+            let city = order.city;
+            if (!countries[country][city]) {
+                countries[country][city] = [];
+            }
+            countries[country][city].push(order);
+        }
+        let countriesArray = [];
+        for (let country in countries) {
+            let citiesArray = [];
+            for (let city in countries[country]) {
+                citiesArray.push({
+                    name: city,
+                    orders: countries[country][city]
+                });
+            }
+            countriesArray.push({
+                name: country,
+                cities: citiesArray
+            });
+        }
+        new_data.push({
+            month: month,
+            countries: countriesArray
+        });
+    }
+
+    /* FORMAT FINAL DES DONNEES
+
+    new_data = {
+        {
+            month: "2020-01",
+            countries: [
+                {
+                    name: "France",
+                    cities: [
+                        {
+                            name: "Paris",
+                            orders: [order]
+                        },
+                        {
+                            name: "Lyon",
+                            orders: [order]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+
+    */
+
+    return new_data;
+}
+
 export { ordersData };

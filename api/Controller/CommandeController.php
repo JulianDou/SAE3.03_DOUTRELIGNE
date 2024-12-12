@@ -20,6 +20,9 @@ class CommandeController extends Controller {
             }
             return $this->commandes->findTotal("false");
         }
+        if ($stat == "world") {
+            return $this->commandes->findWorld();
+        }
         $status = $request->getParam("status");
         if ($status == "Pending" || $status == "Delivered" || $status == "Shipped") {
             $commande = $this->commandes->find($status);
