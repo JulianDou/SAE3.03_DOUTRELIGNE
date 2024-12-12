@@ -8,6 +8,7 @@ import { List } from "./ui/listelement/index.js";
 import { Customer } from "./ui/customer/index.js";
 import { Bars } from "./ui/bars/index.js";
 import { Camembert } from "./ui/camembert/index.js";
+import { Sunburst } from "./ui/sunburst/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
@@ -32,6 +33,8 @@ C.init = async function(){
 
     C.loadCustomer(1);
     C.loadCustomerList();
+
+    C.loadSunburst("2025-01");
 }
 
 C.loadCounters = async function(){
@@ -90,6 +93,11 @@ C.loadCustomerBars = async function(id){
 C.loadCustomerPie = async function(id){
     let productsData = await ordersData.getByCustomer(id);
     V.renderCustomerPie(productsData);
+}
+
+C.loadSunburst = async function(month){
+    let data = await ordersData.getWorld();
+    V.renderSunburst(data, month);
 }
 
 C.handler__graphBtns = async function(event){
@@ -200,6 +208,11 @@ V.renderCustomerBars = function(data){
 V.renderCustomerPie = function(data){
     document.querySelector("#client-product-list").innerHTML = "";
     Camembert.render(data, "client-product-list");
+}
+
+V.renderSunburst = function(data, month){
+    document.querySelector("#sunburst-month").innerHTML = month;
+    Sunburst.render(data, month, "sunburst");
 }
 
 C.init();
