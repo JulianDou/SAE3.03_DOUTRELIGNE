@@ -62,6 +62,24 @@ ordersData.getWorld = async function(){
     let data = await getRequest("commandes?stat=world");
     let new_data = {};
 
+    /* FORMAT DES DONNEES
+
+    [
+        {
+            "country": "Austria",
+            "order_date": "2024-02-01",
+            "total_quantity": "4"
+        },
+        {
+            "country": "Sweden",
+            "order_date": "2024-02-01",
+            "total_quantity": "15"
+        },
+        ...
+    ]
+    
+    */
+
     let months = {};
     for (let elt of data) {
         let month = elt.order_date.slice(0, -3);
@@ -74,35 +92,24 @@ ordersData.getWorld = async function(){
     new_data = [];
 
     for (let month in months) {
-        let countries = {};
-        for (let order of months[month]) {
-            let country = order.country;
-            if (!countries[country]) {
-                countries[country] = {};
-            }
-            let city = order.city;
-            if (!countries[country][city]) {
-                countries[country][city] = [];
-            }
-            countries[country][city].push(order);
-        }
-        let countriesArray = [];
-        for (let country in countries) {
-            let citiesArray = [];
-            for (let city in countries[country]) {
-                citiesArray.push({
-                    name: city,
-                    orders: countries[country][city]
+        let cur_month = months[month];
+        let countries = [];
+        for (let country of cur_month){
+            let country_name = country.country;
+            let total_quantity = parseInt(country.total_quantity);
+            let existingCountry = countries.find(c => c.name === country_name);
+            if (existingCountry) {
+                existingCountry.total_quantity += total_quantity;
+            } else {
+                countries.push({
+                    name: country_name,
+                    total_quantity: total_quantity
                 });
             }
-            countriesArray.push({
-                name: country,
-                cities: citiesArray
-            });
         }
         new_data.push({
             month: month,
-            countries: countriesArray
+            countries: countries
         });
     }
 
@@ -114,16 +121,7 @@ ordersData.getWorld = async function(){
             countries: [
                 {
                     name: "France",
-                    cities: [
-                        {
-                            name: "Paris",
-                            orders: [order]
-                        },
-                        {
-                            name: "Lyon",
-                            orders: [order]
-                        }
-                    ]
+                    total_quantity: 12,
                 }
             ]
         }

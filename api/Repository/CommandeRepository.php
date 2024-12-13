@@ -81,10 +81,13 @@ class CommandeRepository extends EntityRepository {
 
     public function findWorld(){
         $stmt = $this->cnx->prepare("
-            SELECT Customers.country, Customers.city, Orders.id, Orders.order_date
+            SELECT Customers.country, Orders.order_date, SUM(OrderItems.quantity) as total_quantity
             FROM Orders
             JOIN Customers ON Orders.customer_id = Customers.id
-            ORDER BY Orders.order_date, Customers.country, Customers.city;
+            JOIN OrderItems ON Orders.id = OrderItems.order_id
+            WHERE Orders.order_status = 'Delivered' OR Orders.order_status = 'Shipped'
+            GROUP BY Customers.country, Orders.order_date
+            ORDER BY Orders.order_date, Customers.country;
         ");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
