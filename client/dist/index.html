@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Un dashboard de vente de produits alimentaires pour la SAE3.03.">
+    <title>SAE3.DWeb-DI.03 base code</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script type="module" crossorigin src="assets/index-CmDfHmJG.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/index-DKw7VN6P.css">
+</head>
+<body class="bg-gray-300 flex flex-col w-full gap-1 p-1 rounded">
+    <section id="header"></section>
+
+    <div id="basic-counters" class="grid grid-cols-3 w-full gap-1 rounded">
+        <!-- Compteurs de l'itération 3 -->
+    </div>
+
+    <div class="grid gap-1 grid-cols-1 grid-rows-3 lg:grid-cols-2 lg:grid-rows-1 2xl:grid-cols-3">
+        <div id="top3-products" class="flex flex-col justify-between items-center gap-2 rounded w-full bg-white min-h-[480px] pb-4">
+            <!-- Podium de l'itération 4 -->
+        </div>
+        <div class="flex flex-col rounded bg-white h-full w-full">
+            <div id="sales-graph" class="w-full min-h-[360px] h-full rounded">
+                <!-- Graphique de l'itération 5 -->
+            </div>
+            <div id="sales-graph-btns" class="flex justify-center gap-4 pb-2 items-center">
+                <button id="sales-graph-btn-single" data-mode="single" class="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded">Total</button>
+                <button id="sales-graph-btn-multiple" data-mode="multiple" class="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded">Par Catégorie</button>
+            </div>
+        </div>
+        <div id="lowstock-products" class="flex flex-col justify-between col-span-1 lg:col-span-2 2xl:col-span-1  items-center gap-2 rounded w-full bg-white min-h-[480px] pb-4">
+            <!-- Tableau de l'itération 7 -->
+        </div>
+    </div>
+
+    <div class="grid gap-1 grid-cols-1 grid-rows-2 xl:grid-cols-2 xl:grid-rows-1">
+        <div class="flex flex-col-reverse md:flex-row gap-2 bg-white w-full min-h-[460px] p-2 rounded">
+            <div class="flex flex-row items-center md:flex-col gap-2 w-full md:w-1/4">
+                <p class="font-semibold text-center">Sélectionner un produit :</p>
+                <ul id="product-select" class="flex flex-col w-full gap-1 p-2 bg-gray-300 overflow-y-scroll h-full max-h-[100px] md:max-h-[400px] rounded">
+                    <!-- Liste des produits -->
+                </ul>
+            </div>
+            <div id="product-sales" class="w-full md:w-3/4 h-full">
+                <!-- Graphique de l'itération 8 -->
+            </div>
+        </div>
+        <div class="flex flex-col-reverse md:flex-row gap-2 bg-white w-full min-h-[460px] p-2 rounded">
+            <div class="flex flex-row items-center md:flex-col gap-2 w-full md:w-1/4">
+                <p class="font-semibold text-center">Sélectionner un client :</p>
+                <ul id="customer-select" class="flex flex-col w-full gap-1 p-2 bg-gray-300 overflow-y-scroll h-full max-h-[100px] md:max-h-[400px] rounded">
+                    <!-- Liste des clients -->
+                </ul>
+            </div>
+            <div id="client-info" class="flex flex-col gap-2 w-full md:w-3/4 h-full">
+                <!-- Informations de l'itération 9 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="flex items-center justify-center w-full rounded bg-white px-6 md:px-12 xl:px-32">
+        <div id="heatmap" class="w-full min-h-[480px] h-full">
+            <!-- Heatmap de l'itération 11 -->
+        </div>
+    </div>
+
+
+    <!-- Div préparant les couleurs textes -->
+    <!-- Ne s'affichera pas à l'écran -->
+    <div id="text-colors" class="hidden">
+        <div class="text-meat h-[320px]"><p class="text-meat-dark"></p></div>
+        <div class="text-dairy"><p class="text-dairy-dark"></p></div>
+        <div class="text-fruits"><p class="text-fruits-dark"></p></div>
+        <div class="text-vegetables"><p class="text-vegetables-dark"></p></div>
+        <div class="text-bakery"><p class="text-bakery-dark"></p></div>
+    </div>
+
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>zingchart.MODULESDIR="https://cdn.zingchart.com/modules/";</script>
+
+</body>
+</html>
