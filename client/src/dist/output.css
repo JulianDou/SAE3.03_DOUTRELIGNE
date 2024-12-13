@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans&display=swap';
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -751,10 +751,6 @@ video {
   gap: 1rem;
 }
 
-.overflow-visible{
-  overflow: visible;
-}
-
 .overflow-y-scroll{
   overflow-y: scroll;
 }
@@ -788,14 +784,14 @@ video {
   background-color: rgb(218 150 96 / var(--tw-bg-opacity, 1));
 }
 
-.bg-blue-500{
+.bg-blue-800{
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity, 1));
 }
 
 .bg-dairy{
   --tw-bg-opacity: 1;
-  background-color: rgb(215 198 135 / var(--tw-bg-opacity, 1));
+  background-color: rgb(111 214 190 / var(--tw-bg-opacity, 1));
 }
 
 .bg-fruits{
@@ -906,14 +902,19 @@ video {
   font-weight: 600;
 }
 
-.text-\[\#777\]{
+.text-\[\#444\]{
   --tw-text-opacity: 1;
-  color: rgb(119 119 119 / var(--tw-text-opacity, 1));
+  color: rgb(68 68 68 / var(--tw-text-opacity, 1));
 }
 
 .text-bakery{
   --tw-text-opacity: 1;
   color: rgb(218 150 96 / var(--tw-text-opacity, 1));
+}
+
+.text-bakery-dark{
+  --tw-text-opacity: 1;
+  color: rgb(120 76 29 / var(--tw-text-opacity, 1));
 }
 
 .text-black{
@@ -923,7 +924,12 @@ video {
 
 .text-dairy{
   --tw-text-opacity: 1;
-  color: rgb(215 198 135 / var(--tw-text-opacity, 1));
+  color: rgb(111 214 190 / var(--tw-text-opacity, 1));
+}
+
+.text-dairy-dark{
+  --tw-text-opacity: 1;
+  color: rgb(37 97 83 / var(--tw-text-opacity, 1));
 }
 
 .text-fruits{
@@ -931,14 +937,29 @@ video {
   color: rgb(40 174 113 / var(--tw-text-opacity, 1));
 }
 
+.text-fruits-dark{
+  --tw-text-opacity: 1;
+  color: rgb(18 102 61 / var(--tw-text-opacity, 1));
+}
+
 .text-meat{
   --tw-text-opacity: 1;
   color: rgb(236 133 127 / var(--tw-text-opacity, 1));
 }
 
+.text-meat-dark{
+  --tw-text-opacity: 1;
+  color: rgb(163 66 57 / var(--tw-text-opacity, 1));
+}
+
 .text-vegetables{
   --tw-text-opacity: 1;
   color: rgb(148 189 84 / var(--tw-text-opacity, 1));
+}
+
+.text-vegetables-dark{
+  --tw-text-opacity: 1;
+  color: rgb(78 92 33 / var(--tw-text-opacity, 1));
 }
 
 .text-white{
@@ -954,9 +975,9 @@ body{
   cursor: pointer;
 }
 
-.hover\:bg-blue-700:hover{
+.hover\:bg-blue-900:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:brightness-90:hover{
@@ -1017,11 +1038,6 @@ body{
 
   .xl\:grid-rows-1{
     grid-template-rows: repeat(1, minmax(0, 1fr));
-  }
-
-  .xl\:px-24{
-    padding-left: 6rem;
-    padding-right: 6rem;
   }
 
   .xl\:px-32{

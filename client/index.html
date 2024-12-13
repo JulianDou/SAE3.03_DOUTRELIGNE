@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta description="Un dashboard de vente de produits alimentaires pour la SAE3.03.">
+    <meta name="description" content="Un dashboard de vente de produits alimentaires pour la SAE3.03.">
     <title>SAE3.DWeb-DI.03 base code</title>
     <link rel="stylesheet" href="src/dist/output.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,8 +24,8 @@
                 <!-- Graphique de l'itération 5 -->
             </div>
             <div id="sales-graph-btns" class="flex justify-center gap-4 pb-2 items-center">
-                <button id="sales-graph-btn-single" data-mode="single" class="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded">Total</button>
-                <button id="sales-graph-btn-multiple" data-mode="multiple" class="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded">Par Catégorie</button>
+                <button id="sales-graph-btn-single" data-mode="single" class="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded">Total</button>
+                <button id="sales-graph-btn-multiple" data-mode="multiple" class="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded">Par Catégorie</button>
             </div>
         </div>
         <div id="lowstock-products" class="flex flex-col justify-between col-span-1 lg:col-span-2 2xl:col-span-1  items-center gap-2 rounded w-full bg-white min-h-[480px] pb-4">
@@ -68,11 +68,11 @@
     <!-- Div préparant les couleurs textes -->
     <!-- Ne s'affichera pas à l'écran -->
     <div id="text-colors" class="hidden">
-        <div class="text-meat h-[320px]"></div>
-        <div class="text-dairy"></div>
-        <div class="text-fruits"></div>
-        <div class="text-vegetables"></div>
-        <div class="text-bakery"></div>
+        <div class="text-meat h-[320px]"><p class="text-meat-dark"></p></div>
+        <div class="text-dairy"><p class="text-dairy-dark"></p></div>
+        <div class="text-fruits"><p class="text-fruits-dark"></p></div>
+        <div class="text-vegetables"><p class="text-vegetables-dark"></p></div>
+        <div class="text-bakery"><p class="text-bakery-dark"></p></div>
     </div>
 
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>

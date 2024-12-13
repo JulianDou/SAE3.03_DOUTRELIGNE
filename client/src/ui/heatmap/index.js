@@ -98,7 +98,7 @@ Heatmap.render = function(data, target) {
           subtitle: {
             text: "Sur les 12 derniers mois",
             align: 'center',
-            fontColor: '#777',
+            fontColor: '#444',
             fontFamily: 'Open Sans',
             fontSize: '12px',
         },

@@ -27,9 +27,9 @@ else if (mode == "multiple"){
   }
   values[3] = {
     values: data.values[3],
-    "line-color": "#d7c687",
+    "line-color": "#6fd6be",
     marker: {
-      "background-color": "#d7c687"
+      "background-color": "#6fd6be"
     },
     text: "Produits Laitiers"
   }
@@ -75,7 +75,7 @@ let chartConfig = {
   subtitle: {
     text: subtitle,
     align: 'center',
-    fontColor: '#777',
+    fontColor: '#444',
     fontFamily: 'Open Sans',
     fontSize: '12px',
   },
