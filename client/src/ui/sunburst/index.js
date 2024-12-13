@@ -9,8 +9,6 @@ Sunburst.render = function(data, month, target){
         }
     }
 
-    console.log(data);
-
     /* RAPPEL : FORMAT DES DONNEES
 
     new_data = {
