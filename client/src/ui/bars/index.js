@@ -40,7 +40,7 @@ Bars.render = function(productData, target){
         {
             values: [sortedData.dairies],
             text: "Produits Laitiers",
-            backgroundColor: "#d7c687"
+            backgroundColor: "#6fd6be"
         },
         {
             values: [sortedData.meat],
