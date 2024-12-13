@@ -24,29 +24,23 @@ Heatmap.render = function(data, target) {
                     country.name = country.name.substring(0, 4) + ".";
                 }
             }
-
-            // On calcule la valeur totale du pays
-            let country_value = 0;
-            for (let city of country.cities){
-                country_value += city.orders.length;
-            }
             
             // On ajoute, s'il n'y est pas, le pays à la liste
             if (!countries.includes(country.name)){
                 countries.push(country.name);
                 new_data.push(
                     {
-                        values: [country_value],
+                        values: [country.total_quantity],
                         reference: 'chart-max',
                     }
                 );
             }
             else {
-                new_data[countries.indexOf(country.name)].values.push(country_value);
+                new_data[countries.indexOf(country.name)].values.push(country.total_quantity);
             }
 
-            if (country_value > max){
-                max = country_value;
+            if (country.total_quantity > max){
+                max = country.total_quantity;
             }
         }
     }

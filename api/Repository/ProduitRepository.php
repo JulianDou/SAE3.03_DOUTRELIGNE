@@ -88,6 +88,7 @@ class ProduitRepository extends EntityRepository {
     public function findAll(){
         $stmt = $this->cnx->prepare("
             SELECT id, product_name, category FROM Products
+            ORDER BY product_name;
         ");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
