@@ -83,7 +83,7 @@ Heatmap.render = function(data, target) {
         },
 
         title: {
-            text: "Ventes par pays, par mois",
+            text: "Articles vendus par pays, par mois",
             align: 'center',
             fontColor: '#000',
             fontFamily: 'Open Sans',
