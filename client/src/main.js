@@ -8,7 +8,7 @@ import { List } from "./ui/listelement/index.js";
 import { Customer } from "./ui/customer/index.js";
 import { Bars } from "./ui/bars/index.js";
 import { Camembert } from "./ui/camembert/index.js";
-import { Sunburst } from "./ui/sunburst/index.js";
+import { Heatmap } from "./ui/heatmap/index.js";
 
 import { ordersData } from "./data/commandes.js";
 import { productsData } from "./data/produits.js";
@@ -34,8 +34,7 @@ C.init = async function(){
     C.loadCustomer(1);
     C.loadCustomerList();
 
-    C.loadSunburst("2025-01");
-    C.loadSunburstList();
+    C.loadHeatmap();
 }
 
 C.loadCounters = async function(){
@@ -96,15 +95,9 @@ C.loadCustomerPie = async function(id){
     V.renderCustomerPie(productsData);
 }
 
-C.loadSunburst = async function(month){
+C.loadHeatmap = async function(){
     let data = await ordersData.getWorld();
-    V.renderSunburst(data, month);
-}
-
-C.loadSunburstList = async function(){
-    let data = await ordersData.getWorld();
-    V.renderSunburstList(data);
-    document.querySelector("#sunburst-select").addEventListener("click", C.handler__sunburstList);
+    V.renderHeatmap(data);
 }
 
 C.handler__graphBtns = async function(event){
@@ -224,13 +217,8 @@ V.renderCustomerPie = function(data){
     Camembert.render(data, "client-product-list");
 }
 
-V.renderSunburst = function(data, month){
-    document.querySelector("#sunburst-month").innerHTML = month;
-    Sunburst.render(data, month, "sunburst");
-}
-
-V.renderSunburstList = function(data){
-    document.querySelector("#sunburst-select").innerHTML = List.render(data);
+V.renderHeatmap = function(data){
+    Heatmap.render(data, "heatmap");
 }
 
 C.init();
