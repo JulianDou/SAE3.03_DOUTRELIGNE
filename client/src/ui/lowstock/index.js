@@ -29,19 +29,19 @@ LowStock.color = function(){
     let products = document.querySelectorAll("#product-stock");
     for (let product of products){
         if (parseInt(product.innerText) == 0 ){
-            product.style.backgroundColor = "#000";
+            product.style.backgroundColor = "#111";
         }
         else if (parseInt(product.innerText) <= 3 ){
-            product.style.backgroundColor = "#d84141";
+            product.style.backgroundColor = "#991d02";
         }
         else if (parseInt(product.innerText) <= 6 ){
-            product.style.backgroundColor = "#e49932";
+            product.style.backgroundColor = "#b06e0b";
         }
         else if (parseInt(product.innerText) <= 10 ){
-            product.style.backgroundColor = "#e2c33d";
+            product.style.backgroundColor = "#8f8803";
         }
         else {
-            product.style.backgroundColor = "#93ae2a"
+            product.style.backgroundColor = "#337832"
         }
     }
 }
