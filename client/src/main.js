@@ -182,7 +182,7 @@ V.renderTop3 = function(data){
 }
 
 V.renderGraph = function(data, mode){
-    Graph.render(data, mode, "sales-graph", "Total des ventes", "Ces 6 derniers mois");
+    Graph.render(data, mode, "sales-graph", "Total du revenu des ventes", "Ces 6 derniers mois");
 }
 
 V.renderLowStock = function(data){
@@ -192,7 +192,7 @@ V.renderLowStock = function(data){
 }
 
 V.renderProduct = function(data){
-    Graph.render(data.data, "single", "product-sales", "Ventes pour le produit :", data.name);
+    Graph.render(data.data, "single", "product-sales", "Revenu des ventes pour le produit :", data.name);
 }
 
 V.renderProductList = function(data){

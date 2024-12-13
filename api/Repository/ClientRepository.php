@@ -34,7 +34,7 @@ class ClientRepository extends EntityRepository {
 
     public function findAll(){
         $stmt = $this->cnx->prepare("
-            SELECT * FROM Customers
+            SELECT * FROM Customers ORDER BY last_name;
         ");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

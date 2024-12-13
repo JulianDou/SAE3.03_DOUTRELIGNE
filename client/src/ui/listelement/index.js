@@ -19,14 +19,14 @@ List.render = function(data){
                 elt.quantity = elt.quantity + "x";
             }
             else { // l'élément vient du module produits
-                elt.quantity = elt.id + " -";
+                elt.quantity = "(ID" + elt.id + ")";
             }
             
         }
         else if (elt.firs_name) { // l'élément est un client
             elt.color = "white";
             elt.name = elt.firs_name + " " + elt.last_name;
-            elt.quantity = elt.id + " -";
+            elt.quantity = "(ID" + elt.id + ")";
         }
         else { // l'élément est un mois
             elt.name = elt.month;
