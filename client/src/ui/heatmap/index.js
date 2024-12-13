@@ -53,10 +53,10 @@ Heatmap.render = function(data, target) {
     ];
 
     let rules = [
-        '%v >= 0 && %v < ' + max/5,
-        '%v >= ' + max/5 + ' && %v < ' + max/5*2,
-        '%v >= ' + max/5*2 + ' && %v < ' + max/5*3,
-        '%v >= ' + max/5*3,
+        '%v >= 0 && %v < ' + max/4,
+        '%v >= ' + max/4 + ' && %v < ' + max/4*2,
+        '%v >= ' + max/4*2 + ' && %v < ' + max/4*3,
+        '%v >= ' + max/4*3,
     ];
 
     let chartConfig = {
